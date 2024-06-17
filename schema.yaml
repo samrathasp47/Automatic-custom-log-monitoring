@@ -1,0 +1,57 @@
+title: "Automatic custom log alerting"
+stackDescription: "This stack deploys all the resources required for log monitoring and alerting via service connector hub with Notifications."
+description: "This stack deploys all the resources required for log monitoring and alerting with service connector hub with Notifications."
+schemaVersion: 1.1.0
+version: "1.0"
+locale: "en"
+
+variableGroups:
+  - title: "Environment"
+    variables:
+      - "compartment_id"
+      - "Label"
+      - "log_path"
+      - "idcs_endpoint"
+
+  - title: "Hidden Variables"
+    visible: false
+    variables:
+      - "tenancy_ocid"
+      - "user_ocid"
+      - "fingerprint"
+      - "private_key_path"
+      - "private_key_password"
+      - "region"
+
+Variables:
+
+  compartment_id:
+    type: oci:identity:compartment:id
+    title: "Existing  compartment"
+    description: "The Existing compartment where all the resources will get deploy"
+    required: true 
+
+  Label:
+    type: string
+    title: "Label"
+    minLength: 1
+    maxLength: 8
+    pattern: "^[A-Za-z][A-Za-z0-9]{1,7}$"
+    description: "A unique label that gets prepended to all resources created by the stack."
+    required: true
+
+  idcs_endpoint:
+    type: string
+    title: "idcs_endpoint"
+    description: "Domain URL."
+    required: true
+
+  log_path:
+    type: string
+    title: "Log_path"
+    description: "logging path from the server which needs to be monitored"
+    required: true
+
+
+
+
